@@ -1,1 +1,221 @@
-"create a complete responsiveindex.html file for a hindu pooja services website.Output only valid HTML code. Do not escape newline(/n) or quote(/").Do notwrap the HTML in JSON or Markdown"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sankalpam - Hindu Pooja Services</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fffaf2;
+color:#333;
+}
+
+header{
+background:#8B0000;
+color:white;
+padding:15px;
+text-align:center;
+}
+
+nav{
+background:#d35400;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.hero{
+padding:60px 20px;
+text-align:center;
+background:#fff3cd;
+}
+
+.hero h1{
+font-size:42px;
+color:#8B0000;
+}
+
+.hero p{
+margin-top:15px;
+font-size:20px;
+}
+
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 25px;
+background:#8B0000;
+color:white;
+text-decoration:none;
+border-radius:5px;
+}
+
+section{
+padding:40px 20px;
+max-width:1100px;
+margin:auto;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+gap:20px;
+justify-content:center;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:8px;
+box-shadow:0 0 10px rgba(0,0,0,.15);
+width:300px;
+}
+
+.card h3{
+color:#8B0000;
+margin-bottom:10px;
+}
+
+footer{
+background:#8B0000;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:30px;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+}
+
+button{
+padding:12px 20px;
+background:#8B0000;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+.cards{
+flex-direction:column;
+align-items:center;
+}
+.hero h1{
+font-size:32px;
+}
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🙏 Sankalpam</h1>
+<p>One Stop Solution for Hindu Pooja Services</p>
+</header>
+
+<nav>
+<a href="#">Home</a>
+<a href="#">Services</a>
+<a href="#">Packages</a>
+<a href="#">Gallery</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="hero">
+<h1>Book Your Pooja Online</h1>
+<p>Experienced Priests for all Hindu Rituals and Ceremonies</p>
+<a class="btn" href="#contact">Book Now</a>
+</div>
+
+<section>
+<h2 align="center">Our Services</h2>
+<br>
+
+<div class="cards">
+
+<div class="card">
+<h3>Ganapathi Pooja</h3>
+<p>Traditional Ganapathi Homam & Pooja.</p>
+</div>
+
+<div class="card">
+<h3>Gruhapravesam</h3>
+<p>House warming ceremonies with experienced priests.</p>
+</div>
+
+<div class="card">
+<h3>Satyanarayana Pooja</h3>
+<p>Complete pooja with all samagri arrangements.</p>
+</div>
+
+<div class="card">
+<h3>Wedding Pooja</h3>
+<p>Traditional Hindu wedding rituals.</p>
+</div>
+
+<div class="card">
+<h3>Navagraha Homam</h3>
+<p>Homam for health, wealth and prosperity.</p>
+</div>
+
+<div class="card">
+<h3>Corporate Pooja</h3>
+<p>Office inauguration and business poojas.</p>
+</div>
+
+</div>
+</section>
+
+<section id="contact">
+
+<h2 align="center">Contact Us</h2>
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<input type="tel" placeholder="Phone Number">
+
+<input type="email" placeholder="Email">
+
+<textarea rows="5" placeholder="Your Requirement"></textarea>
+
+<button type="submit">Submit</button>
+
+</form>
+
+</section>
+
+<footer>
+
+<h3>Sankalpam</h3>
+
+<p>📞 +91 9876543210</p>
+
+<p>📧 info@sankalpam.com</p>
+
+<p>© 2026 Sankalpam. All Rights Reserved.</p>
+
+</footer>
+
+</body>
+</html>

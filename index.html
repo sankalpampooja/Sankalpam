@@ -204,13 +204,8 @@
 </div>
 
 <script>
-  // ============================================================
-  // ⚠️ REPLACE THIS with your real UPI ID before going live.
-  // Find it in your UPI app under Profile → UPI ID / VPA.
-  // Example formats: 9008022136@ybl, yourname@oksbi, yourname@okaxis
-  // ============================================================
   const UPI_ID = "ramaniisundaaresan@okhdfcbank";
-  const PAYEE_NAME = "S Rajaraman";
+  const PAYEE_NAME = "S rajaraman";
 
   const PRODUCTS = [
     { id:'kumkum', name:'Kumkum & Turmeric Combo', price:99, icon:'🟠', desc:'Pure kumkum and haldi, 100g each.' },
@@ -226,19 +221,20 @@
   let cart = JSON.parse(localStorage.getItem('sankalpam_cart') || '{}');
 
   function renderProducts(){
-    document.getElementById('productGrid').innerHTML = PRODUCTS.map(p => `
-      <div class="product-card">
-        <div class="product-img">${p.icon}</div>
-        <div class="product-body">
-          <h3>${p.name}</h3>
-          <p class="desc">${p.desc}</p>
-          <div class="price-row">
-            <span class="price">₹${p.price}</span>
-            <button class="add-btn" onclick="addToCart('${p.id}','${p.name}',${p.price})">Add</button>
-          </div>
-        </div>
-      </div>
-    `).join('');
+    var html = '';
+    for (var i = 0; i < PRODUCTS.length; i++){
+      var p = PRODUCTS[i];
+      html += '<div class="product-card">'
+        + '<div class="product-img">' + p.icon + '</div>'
+        + '<div class="product-body">'
+        + '<h3>' + p.name + '</h3>'
+        + '<p class="desc">' + p.desc + '</p>'
+        + '<div class="price-row">'
+        + '<span class="price">' + '&#8377;' + p.price + '</span>'
+        + '<button class="add-btn" onclick="addToCart(' + "'" + p.id + "'" + ',' + "'" + p.name + "'" + ',' + p.price + ')">Add</button>'
+        + '</div></div></div>';
+    }
+    document.getElementById('productGrid').innerHTML = html;
   }
 
   function addToCart(id, name, price){
@@ -256,42 +252,57 @@
     renderCart();
   }
   function renderCart(){
-    const itemsEl = document.getElementById('cartItems');
-    const ids = Object.keys(cart);
-    let total = 0;
-    document.getElementById('cartCount').textContent = ids.reduce((s,id)=>s+cart[id].qty,0);
+    var itemsEl = document.getElementById('cartItems');
+    var ids = Object.keys(cart);
+    var total = 0;
+    var count = 0;
+    for (var i = 0; i < ids.length; i++){ count += cart[ids[i]].qty; }
+    document.getElementById('cartCount').textContent = count;
     if(ids.length === 0){
       itemsEl.innerHTML = '<div class="empty-note">Your cart is empty. Add some samagri!</div>';
     } else {
-      itemsEl.innerHTML = ids.map(id => {
-        const item = cart[id];
+      var html = '';
+      for (var j = 0; j < ids.length; j++){
+        var id = ids[j];
+        var item = cart[id];
         total += item.price * item.qty;
-        return `<div class="cart-item">
-          <div><div class="cart-item-name">${item.name}</div><div class="cart-item-price">₹${item.price} × ${item.qty}</div></div>
-          <div class="qty-controls"><button onclick="changeQty('${id}',-1)">−</button><span>${item.qty}</span><button onclick="changeQty('${id}',1)">+</button></div>
-        </div>`;
-      }).join('');
+        html += '<div class="cart-item">'
+          + '<div><div class="cart-item-name">' + item.name + '</div>'
+          + '<div class="cart-item-price">' + '&#8377;' + item.price + ' x ' + item.qty + '</div></div>'
+          + '<div class="qty-controls">'
+          + '<button onclick="changeQty(' + "'" + id + "'" + ',-1)">-</button>'
+          + '<span>' + item.qty + '</span>'
+          + '<button onclick="changeQty(' + "'" + id + "'" + ',1)">+</button>'
+          + '</div></div>';
+      }
+      itemsEl.innerHTML = html;
     }
-    document.getElementById('cartTotal').textContent = '₹' + total;
+    document.getElementById('cartTotal').textContent = '\u20B9' + total;
   }
   function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
   function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
 
-  // ---- UPI checkout ----
   function payWithUPI(){
-    const ids = Object.keys(cart);
-    if(ids.length === 0){ alert('Your cart is empty.'); return; }
-    if(UPI_ID === "REPLACE_WITH_YOUR_UPI_ID"){
-      alert('UPI ID not set up yet — add your real UPI ID in the code before accepting payments.');
-      return;
-    }
-    let total = 0;
-    let note = ids.map(id => { total += cart[id].price * cart[id].qty; return `${cart[id].name} x${cart[id].qty}`; }).join(', ');
-    if(note.length > 50) note = 'Sankalpam order';
+    try {
+      var ids = Object.keys(cart);
+      if(ids.length === 0){ alert('Your cart is empty.'); return; }
+      var total = 0;
+      for (var i = 0; i < ids.length; i++){
+        var item = cart[ids[i]];
+        total += item.price * item.qty;
+      }
+      var note = 'Sankalpam order';
 
-    // Standard UPI deep link — opens the user's default UPI app with amount pre-filled
-    const upiUrl = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(PAYEE_NAME)}&am=${total}&cu=INR&tn=${encodeURIComponent(note)}`;
-    window.location.href = upiUrl;
+      var upiUrl = 'upi://pay?pa=' + encodeURIComponent(UPI_ID)
+        + '&pn=' + encodeURIComponent(PAYEE_NAME)
+        + '&am=' + total
+        + '&cu=INR'
+        + '&tn=' + encodeURIComponent(note);
+
+      window.location.href = upiUrl;
+    } catch (err) {
+      alert('Something went wrong opening the UPI app: ' + err.message);
+    }
   }
 
   renderProducts();

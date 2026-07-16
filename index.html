@@ -3,218 +3,475 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sankalpam - Pooja Services</title>
-
+<title>Sankalpam — House of Pooja Samagri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
+  :root{
+    --gold:#D9A441;
+    --gold-dark:#B5822C;
+    --vermilion:#C1421A;
+    --vermilion-dark:#9A3313;
+    --leaf:#4A6741;
+    --ivory:#FAF3E6;
+    --ivory-deep:#F3E8D3;
+    --brown:#3A2317;
+    --brown-soft:#6B4A38;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Mukta', sans-serif;
+    background:var(--ivory);
+    color:var(--brown);
+    line-height:1.5;
+  }
+  h1,h2,h3,.brand-name{
+    font-family:'Yatra One', cursive;
+    font-weight:400;
+  }
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
 
-body{
-           <img src="images/logo.jpg" alt="House of Pooja Logo" class="logo">
-            margin: 0;
-            background-image: url("images/templetower1.jpg");
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-        }
-header{
-background:#8B0000;
-color:white;
-padding:15px;
-text-align:center;
-}
+  /* ---------- Header ---------- */
+  header{
+    background: var(--brown);
+    color:var(--ivory);
+    position:sticky; top:0; z-index:50;
+  }
+  .topbar{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    max-width:1200px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand-mark{
+    width:44px; height:44px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--gold), var(--vermilion) 75%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px;
+    box-shadow: 0 0 0 2px var(--gold-dark);
+  }
+  .brand-name{font-size:26px; color:var(--ivory);}
+  .brand-tag{font-size:11px; letter-spacing:1.5px; color:var(--gold); text-transform:uppercase; margin-top:-2px;}
+  nav{display:flex; gap:28px; font-weight:600; font-size:14.5px;}
+  nav a{position:relative; padding:4px 0; color:var(--ivory); opacity:.9;}
+  nav a:hover{opacity:1;}
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--gold); transition:width .2s;
+  }
+  nav a:hover::after{width:100%;}
+  .cart-btn{
+    background:var(--vermilion); color:#fff; border:none;
+    padding:9px 16px; border-radius:24px; font-weight:700; font-size:13.5px;
+    cursor:pointer; display:flex; align-items:center; gap:6px;
+  }
+  .cart-btn:hover{background:var(--vermilion-dark);}
+  .cart-count{background:var(--gold); color:var(--brown); border-radius:50%; width:19px; height:19px; font-size:11px; display:flex; align-items:center; justify-content:center; font-weight:800;}
 
-nav{
-background:#d35400;
-padding:10px;
-text-align:center;
-}
+  /* ---------- Hero ---------- */
+  .hero{
+    background:
+      radial-gradient(circle at 15% 20%, rgba(217,164,65,.18), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(193,66,26,.14), transparent 50%),
+      var(--ivory);
+    padding:80px 28px 70px;
+    text-align:center;
+    border-bottom:1px solid var(--ivory-deep);
+  }
+  .eyebrow{
+    display:inline-block; letter-spacing:2px; font-size:12px; font-weight:700;
+    color:var(--vermilion); text-transform:uppercase; margin-bottom:16px;
+  }
+  .hero h1{font-size:52px; color:var(--brown); line-height:1.15; max-width:780px; margin:0 auto 14px;}
+  .hero h1 span{color:var(--vermilion);}
+  .hero p{font-size:17px; color:var(--brown-soft); max-width:520px; margin:0 auto 30px;}
+  .hero-cta{
+    display:inline-flex; gap:14px;
+  }
+  .btn-primary, .btn-secondary{
+    padding:14px 30px; border-radius:30px; font-weight:700; font-size:15px; cursor:pointer; border:none;
+  }
+  .btn-primary{background:var(--vermilion); color:#fff;}
+  .btn-primary:hover{background:var(--vermilion-dark);}
+  .btn-secondary{background:transparent; color:var(--brown); border:2px solid var(--gold);}
+  .btn-secondary:hover{background:var(--gold); color:#fff;}
 
-nav a{
-color:white;
-text-decoration:none;
-margin:15px;
-font-weight:bold;
-}
+  /* ---------- Section shell ---------- */
+  section{padding:64px 28px; max-width:1200px; margin:0 auto;}
+  .section-head{text-align:center; margin-bottom:40px;}
+  .section-head .eyebrow{margin-bottom:8px;}
+  .section-head h2{font-size:34px; color:var(--brown);}
 
-.hero{
-padding:60px 20px;
-text-align:center;
-background:#fff3cd;
-}
+  /* ---------- Thali cards (signature element) ---------- */
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:24px;}
+  .thali{
+    background:var(--white);
+    border-radius:18px;
+    padding:26px 22px;
+    position:relative;
+    border:1px solid var(--ivory-deep);
+    box-shadow:0 2px 10px rgba(58,35,23,.05);
+    transition:transform .18s, box-shadow .18s;
+  }
+  .thali:hover{transform:translateY(-4px); box-shadow:0 10px 24px rgba(58,35,23,.10);}
+  .thali::before{
+    content:""; position:absolute; inset:8px;
+    border:1.5px dashed var(--gold);
+    border-radius:12px;
+    opacity:.35;
+    pointer-events:none;
+  }
+  .thali-icon{
+    width:52px; height:52px; border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--vermilion));
+    display:flex; align-items:center; justify-content:center;
+    font-size:24px; color:#fff; margin-bottom:16px;
+  }
+  .thali h3{font-size:20px; color:var(--brown); margin-bottom:8px;}
+  .thali p{font-size:14px; color:var(--brown-soft); margin-bottom:14px;}
 
-.hero h1{
-font-size:42px;
-color:#8B0000;
-}
+  /* ---------- Shop / Products ---------- */
+  .product-card{
+    background:var(--white); border-radius:16px; overflow:hidden;
+    border:1px solid var(--ivory-deep);
+    display:flex; flex-direction:column;
+    box-shadow:0 2px 10px rgba(58,35,23,.05);
+  }
+  .product-img{
+    height:150px;
+    background:linear-gradient(135deg, var(--ivory-deep), var(--gold) 140%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:44px;
+  }
+  .product-body{padding:18px; display:flex; flex-direction:column; gap:8px; flex:1;}
+  .product-body h3{font-family:'Mukta',sans-serif; font-weight:700; font-size:16px; color:var(--brown);}
+  .product-body .desc{font-size:12.5px; color:var(--brown-soft); flex:1;}
+  .price-row{display:flex; align-items:center; justify-content:space-between; margin-top:6px;}
+  .price{font-weight:800; font-size:17px; color:var(--vermilion);}
+  .add-btn{
+    background:var(--leaf); color:#fff; border:none; padding:8px 14px;
+    border-radius:20px; font-weight:700; font-size:12.5px; cursor:pointer;
+  }
+  .add-btn:hover{background:#3a5233;}
 
-.hero p{
-margin-top:15px;
-font-size:20px;
-}
+  /* ---------- Packages ---------- */
+  .package{
+    background:var(--brown); color:var(--ivory);
+    border-radius:18px; padding:30px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .package.featured{background:linear-gradient(160deg, var(--vermilion), var(--vermilion-dark));}
+  .package .tag{font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gold); font-weight:700;}
+  .package h3{font-size:24px; margin:10px 0;}
+  .package .amt{font-size:32px; font-weight:800; color:var(--gold); margin-bottom:14px;}
+  .package ul{list-style:none; text-align:left; margin:0 auto 20px; max-width:220px; font-size:13.5px; opacity:.9;}
+  .package li{padding:4px 0;}
+  .package li::before{content:"✓ "; color:var(--gold);}
 
-.btn{
-display:inline-block;
-margin-top:20px;
-padding:12px 25px;
-background:#8B0000;
-color:white;
-text-decoration:none;
-border-radius:5px;
-}
+  /* ---------- Contact / Footer ---------- */
+  .contact-wrap{
+    background:var(--ivory-deep); border-radius:20px; padding:40px;
+    display:grid; grid-template-columns:1fr 1fr; gap:30px; align-items:center;
+  }
+  footer{background:var(--brown); color:var(--ivory); text-align:center; padding:26px; font-size:13px; opacity:.8;}
 
-section{
-padding:40px 20px;
-max-width:1100px;
-margin:auto;
-}
+  /* ---------- Cart drawer ---------- */
+  .overlay{
+    position:fixed; inset:0; background:rgba(58,35,23,.5);
+    display:none; z-index:100;
+  }
+  .overlay.open{display:block;}
+  .cart-drawer{
+    position:fixed; top:0; right:-380px; width:360px; height:100%;
+    background:var(--white); z-index:101; transition:right .25s;
+    display:flex; flex-direction:column;
+  }
+  .cart-drawer.open{right:0;}
+  .cart-header{
+    background:var(--brown); color:var(--ivory); padding:18px 20px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .cart-header h3{font-family:'Mukta',sans-serif; font-weight:700;}
+  .cart-close{background:none; border:none; color:var(--ivory); font-size:20px; cursor:pointer;}
+  .cart-items{flex:1; overflow-y:auto; padding:16px 20px;}
+  .cart-item{display:flex; justify-content:space-between; align-items:center; padding:12px 0; border-bottom:1px solid var(--ivory-deep);}
+  .cart-item-name{font-size:14px; font-weight:600;}
+  .cart-item-price{font-size:12.5px; color:var(--brown-soft);}
+  .qty-controls{display:flex; align-items:center; gap:8px;}
+  .qty-controls button{width:24px; height:24px; border-radius:50%; border:1px solid var(--gold); background:#fff; cursor:pointer; font-weight:700;}
+  .cart-footer{padding:18px 20px; border-top:1px solid var(--ivory-deep);}
+  .cart-total{display:flex; justify-content:space-between; font-weight:800; font-size:16px; margin-bottom:14px;}
+  .checkout-btn{
+    width:100%; background:var(--vermilion); color:#fff; border:none; padding:13px;
+    border-radius:26px; font-weight:700; font-size:14.5px; cursor:pointer;
+  }
+  .checkout-btn:hover{background:var(--vermilion-dark);}
+  .empty-note{color:var(--brown-soft); font-size:13.5px; text-align:center; padding:30px 0;}
 
-.cards{
-display:flex;
-flex-wrap:wrap;
-gap:20px;
-justify-content:center;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:8px;
-box-shadow:0 0 10px rgba(0,0,0,.15);
-width:300px;
-}
-
-.card h3{
-color:#8B0000;
-margin-bottom:10px;
-}
-
-footer{
-background:#8B0000;
-color:white;
-text-align:center;
-padding:20px;
-margin-top:30px;
-}
-
-input,textarea{
-width:100%;
-padding:10px;
-margin:8px 0;
-}
-
-button{
-padding:12px 20px;
-background:#8B0000;
-color:white;
-border:none;
-cursor:pointer;
-}
-
-@media(max-width:768px){
-.cards{
-flex-direction:column;
-align-items:center;
-}
-.hero h1{
-font-size:32px;
-}
+  @media (max-width:760px){
+    nav{display:none;}
+    .hero h1{font-size:34px;}
+    .contact-wrap{grid-template-columns:1fr;}
+  }
 </style>
-
 </head>
+<body>
 
 <header>
-<h1>🙏 Sankalpam</h1>
-<p>Where Divine Meets Devotion</p>
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">🪔</div>
+      <div>
+        <div class="brand-name">Sankalpam</div>
+        <div class="brand-tag">House of Pooja Samagri</div>
+      </div>
+    </div>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#packages">Packages</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="cart-btn" onclick="openCart()">🛒 Cart <span class="cart-count" id="cartCount">0</span></button>
+  </div>
 </header>
 
-<nav>
-<a href="#home">Home</a>
-<a href="#services">Services</a>
-<a href="#packages">Packages</a>
-<a href="#gallary">Gallery</a>
-<a href="#contact">Contact</a>
-</nav>
-
-<div class="hero"id=home>
-<h1>Book your Pooja samagiri Online</h1>
-<p>House of Pooja Samagiri</p>
-<a class="btn" href="#contact">Book Now</a>
-</div>
+<section class="hero" id="home">
+  <div class="eyebrow">Where Divine Meets Devotion</div>
+  <h1>Every Sankalpa begins with the <span>right samagri</span></h1>
+  <p>Traditional, temple-grade pooja essentials — sourced with care, delivered to your door across Bangalore.</p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">Shop Samagri</button>
+    <a href="#packages" class="btn-secondary">View Packages</a>
+  </div>
+</section>
 
 <section id="services">
-<h2 align="center">Our Services</h2>
-<br>
+  <div class="section-head">
+    <div class="eyebrow">What we prepare</div>
+    <h2>Our Services</h2>
+  </div>
+  <div class="grid">
+    <div class="thali">
+      <div class="thali-icon">🐘</div>
+      <h3>Ganapathi Pooja Samagri</h3>
+      <p>Traditional Ganapathi Homam & Pooja samagri, curated to shastra-prescribed detail.</p>
+    </div>
+    <div class="thali">
+      <div class="thali-icon">🏠</div>
+      <h3>Gruhapravesam</h3>
+      <p>Complete house-warming ceremony samagri, from kalasham to navadhanya.</p>
+    </div>
+    <div class="thali">
+      <div class="thali-icon">🕉️</div>
+      <h3>Satyanarayana Pooja Samagri</h3>
+      <p>Full Satyanarayana vratham kit, plus any other samagri arrangements you need.</p>
+    </div>
+  </div>
+</section>
 
-<div class="cards">
+<section id="shop">
+  <div class="section-head">
+    <div class="eyebrow">Book Online</div>
+    <h2>Shop Pooja Samagri</h2>
+  </div>
+  <div class="grid" id="productGrid"></div>
+</section>
 
-<div class="card">
-<h3>Ganapathi Pooja samagiri</h3>
-<p>Traditional Ganapathi Homam & Pooja samagiri.</p>
-</div>
+<section id="packages">
+  <div class="section-head">
+    <div class="eyebrow">Bundled & Best Value</div>
+    <h2>Packages</h2>
+  </div>
+  <div class="grid">
+    <div class="package">
+      <div class="tag">Essential</div>
+      <h3>Basic Pooja Kit</h3>
+      <div class="amt">₹499</div>
+      <ul>
+        <li>Kumkum, turmeric, akshata</li>
+        <li>Agarbatti & camphor</li>
+        <li>Cotton wicks & oil</li>
+      </ul>
+      <button class="add-btn" onclick="addToCart('pkg-basic','Basic Pooja Kit',499)">Add to Cart</button>
+    </div>
+    <div class="package featured">
+      <div class="tag">Most Booked</div>
+      <h3>Gruhapravesam Kit</h3>
+      <div class="amt">₹2,499</div>
+      <ul>
+        <li>Full kalasha samagri</li>
+        <li>Navadhanya & mango leaves</li>
+        <li>Coconut, betel, flowers</li>
+      </ul>
+      <button class="add-btn" onclick="addToCart('pkg-gruha','Gruhapravesam Kit',2499)">Add to Cart</button>
+    </div>
+    <div class="package">
+      <div class="tag">Premium</div>
+      <h3>Satyanarayana Vratham Kit</h3>
+      <div class="amt">₹1,899</div>
+      <ul>
+        <li>Complete vratham samagri</li>
+        <li>Prasadam ingredients</li>
+        <li>Decorative mandap items</li>
+      </ul>
+      <button class="add-btn" onclick="addToCart('pkg-satya','Satyanarayana Vratham Kit',1899)">Add to Cart</button>
+    </div>
+  </div>
+</section>
 
-<div class="card">
-<h3>Gruhapravesam</h3>
-<p>House warming ceremonies samagiri.</p>
-</div>
-
-<div class="card">
-<h3>Satyanarayana Pooja samagiri</h3>
-<p>othersamagri arrangements.</p>
-</div> 
-
-<div class="card">
-<h3>Wedding Pooja samagiris and kalasa samagiries</h3>
-<p>Traditional Hindu wedding items.</p>
-</div>
-
-<div class="card">
-<h3>Navagraha Homam samagiri</h3>
-<p>Homam for health,wealth and others.</p>
-</div>
-
-<div class="card">
-<h3>Corporate Pooja</h3>
-<p>Office inauguration and business poojas.</p>
-</div>
-
+<section id="gallery">
+  <div class="section-head">
+    <div class="eyebrow">A Glimpse</div>
+    <h2>Gallery</h2>
+  </div>
+  <div class="grid">
+    <div class="thali" style="text-align:center;">🪔<br><br><p>Add photos of completed poojas &amp; samagri here</p></div>
+    <div class="thali" style="text-align:center;">🌺<br><br><p>Add photos of completed poojas &amp; samagri here</p></div>
+    <div class="thali" style="text-align:center;">🥥<br><br><p>Add photos of completed poojas &amp; samagri here</p></div>
+  </div>
 </section>
 
 <section id="contact">
-
-<h2 align="center">Contact Us</h2>
-
-<form>
-
-<input type="text" placeholder="Your Name">
-
-<input type="tel" placeholder="Phone Number">
-
-<input type="email" placeholder="Email">
-
-<textarea rows="5" placeholder="Your Requirement"></textarea>
-
-<button type="submit">Submit</button>
-
-</form>
-
+  <div class="contact-wrap">
+    <div>
+      <h2 style="font-size:28px; margin-bottom:12px;">Get in Touch</h2>
+      <p style="color:var(--brown-soft); margin-bottom:16px;">Questions about a specific pooja or a custom samagri list? Reach out directly.</p>
+      <p style="font-weight:700;">📞 +91 90080 22136</p>
+      <p style="font-weight:700;">✉️ info@sankalpam.com</p>
+    </div>
+    <div>
+      <a href="https://wa.me/919008022136?text=Hi%20Sankalpam%2C%20I'd%20like%20to%20know%20more%20about%20your%20pooja%20samagri." class="btn-primary" style="display:block; text-align:center;">Chat on WhatsApp</a>
+    </div>
+  </div>
 </section>
 
-<footer>
+<footer>© 2026 Sankalpam — House of Pooja Samagri. Made with devotion in Bangalore.</footer>
 
-<h3>Sankalpam</h3>
+<!-- Cart Drawer -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <button class="checkout-btn" onclick="checkout()">Checkout via WhatsApp</button>
+  </div>
+</div>
 
-<p>📞 +91 9008022136</p>
+<script>
+  const PRODUCTS = [
+    { id:'kumkum', name:'Kumkum & Turmeric Combo', price:99, icon:'🟠', desc:'Pure kumkum and haldi, 100g each.' },
+    { id:'agarbatti', name:'Agarbatti Pack (Sandalwood)', price:79, icon:'🕯️', desc:'Premium sandalwood incense sticks.' },
+    { id:'camphor', name:'Camphor Tablets', price:49, icon:'✨', desc:'Pure edible-grade camphor, 50g.' },
+    { id:'diya', name:'Brass Diya Pair', price:249, icon:'🪔', desc:'Traditional handcrafted brass diyas.' },
+    { id:'coconut', name:'Pooja Coconut', price:39, icon:'🥥', desc:'Fresh coconut with husk, temple-grade.' },
+    { id:'flowers', name:'Fresh Flower Garland', price:149, icon:'🌺', desc:'Marigold & jasmine garland, made fresh to order.' },
+    { id:'thread', name:'Mauli Sacred Thread', price:29, icon:'🧵', desc:'Sacred red-and-yellow protection thread.' },
+    { id:'banana', name:'Banana Leaves (Set of 5)', price:59, icon:'🍃', desc:'Fresh banana leaves for prasadam offering.' },
+  ];
 
-<p>📧 info@sankalpam.com</p>
+  let cart = JSON.parse(localStorage.getItem('sankalpam_cart') || '{}');
 
-<p>© 2026 Sankalpam. All Rights Reserved.</p>
+  function renderProducts(){
+    const grid = document.getElementById('productGrid');
+    grid.innerHTML = PRODUCTS.map(p => `
+      <div class="product-card">
+        <div class="product-img">${p.icon}</div>
+        <div class="product-body">
+          <h3>${p.name}</h3>
+          <p class="desc">${p.desc}</p>
+          <div class="price-row">
+            <span class="price">₹${p.price}</span>
+            <button class="add-btn" onclick="addToCart('${p.id}','${p.name}',${p.price})">Add</button>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
 
-</footer>
+  function addToCart(id, name, price){
+    if(cart[id]){ cart[id].qty += 1; }
+    else { cart[id] = { name, price, qty: 1 }; }
+    saveCart();
+    openCart();
+  }
+
+  function changeQty(id, delta){
+    if(!cart[id]) return;
+    cart[id].qty += delta;
+    if(cart[id].qty <= 0) delete cart[id];
+    saveCart();
+  }
+
+  function saveCart(){
+    localStorage.setItem('sankalpam_cart', JSON.stringify(cart));
+    renderCart();
+  }
+
+  function renderCart(){
+    const itemsEl = document.getElementById('cartItems');
+    const ids = Object.keys(cart);
+    let total = 0;
+    document.getElementById('cartCount').textContent = ids.reduce((s,id)=>s+cart[id].qty,0);
+
+    if(ids.length === 0){
+      itemsEl.innerHTML = '<div class="empty-note">Your cart is empty. Add some samagri!</div>';
+    } else {
+      itemsEl.innerHTML = ids.map(id => {
+        const item = cart[id];
+        total += item.price * item.qty;
+        return `
+          <div class="cart-item">
+            <div>
+              <div class="cart-item-name">${item.name}</div>
+              <div class="cart-item-price">₹${item.price} × ${item.qty}</div>
+            </div>
+            <div class="qty-controls">
+              <button onclick="changeQty('${id}',-1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="changeQty('${id}',1)">+</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    document.getElementById('cartTotal').textContent = '₹' + total;
+  }
+
+  function openCart(){
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('overlay').classList.add('open');
+  }
+  function closeCart(){
+    document.getElementById('cartDrawer').classList.remove('open');
+    document.getElementById('overlay').classList.remove('open');
+  }
+
+  function checkout(){
+    const ids = Object.keys(cart);
+    if(ids.length === 0){ alert('Your cart is empty.'); return; }
+    let msg = "Hi Sankalpam, I'd like to order:%0A";
+    let total = 0;
+    ids.forEach(id => {
+      const item = cart[id];
+      total += item.price * item.qty;
+      msg += `- ${item.name} x${item.qty} (₹${item.price*item.qty})%0A`;
+    });
+    msg += `%0ATotal: ₹${total}%0APlease confirm availability and delivery.`;
+    window.open(`https://wa.me/919008022136?text=${msg}`, '_blank');
+  }
+
+  renderProducts();
+  renderCart();
+</script>
 
 </body>
 </html>

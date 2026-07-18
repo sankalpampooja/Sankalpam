@@ -198,15 +198,11 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-footer">
     <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
-    <div class="upi-note">📱 Pay by UPI — opens PhonePe / GPay / Paytm</div>
-    <button class="checkout-btn" onclick="payWithUPI()">Pay with UPI</button>
+    <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
   </div>
 </div>
 
 <script>
-  const UPI_ID = "ramaniisundaaresan@okhdfcbank";
-  const PAYEE_NAME = "S rajaraman";
-
   const PRODUCTS = [
     { id:'kumkum', name:'Kumkum & Turmeric Combo', price:99, icon:'🟠', desc:'Pure kumkum and haldi, 100g each.' },
     { id:'agarbatti', name:'Agarbatti Pack (Sandalwood)', price:79, icon:'🕯️', desc:'Premium sandalwood incense sticks.' },
@@ -282,27 +278,10 @@
   function openCart(){ document.getElementById('cartDrawer').classList.add('open'); document.getElementById('overlay').classList.add('open'); }
   function closeCart(){ document.getElementById('cartDrawer').classList.remove('open'); document.getElementById('overlay').classList.remove('open'); }
 
-  function payWithUPI(){
-    try {
-      var ids = Object.keys(cart);
-      if(ids.length === 0){ alert('Your cart is empty.'); return; }
-      var total = 0;
-      for (var i = 0; i < ids.length; i++){
-        var item = cart[ids[i]];
-        total += item.price * item.qty;
-      }
-      var note = 'Sankalpam order';
-
-      var upiUrl = 'upi://pay?pa=' + encodeURIComponent(UPI_ID)
-        + '&pn=' + encodeURIComponent(PAYEE_NAME)
-        + '&am=' + total
-        + '&cu=INR'
-        + '&tn=' + encodeURIComponent(note);
-
-      window.location.href = upiUrl;
-    } catch (err) {
-      alert('Something went wrong opening the UPI app: ' + err.message);
-    }
+  function goToCheckout(){
+    var ids = Object.keys(cart);
+    if(ids.length === 0){ alert('Your cart is empty. Add some samagri first.'); return; }
+    window.location.href = 'checkout.html';
   }
 
   renderProducts();
